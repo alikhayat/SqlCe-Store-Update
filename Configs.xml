@@ -1,0 +1,39 @@
+﻿
+<Databases>
+  <ABR>
+    <Path>‪C:\Users\PC035\Desktop\</Path>
+    <DBName>ABR-DC.SDF</DBName >
+    <ServerIP>10.1.100.22</ServerIP >
+    <WebAlias>DcPublisher</WebAlias>
+    <PublisherHost>abr-web\abr_web</PublisherHost>
+    <PublisherDb>ABR-DB-Sync</PublisherDb>
+    <PublicationName>ABR-SYNC</PublicationName >
+    <PublicationLogin>Sa</PublicationLogin>
+    <PublicationPass>Nav@2018</PublicationPass>
+    <WebServerPath>‪\\10.1.100.24\dcapp\</WebServerPath>
+  </ABR>
+  <NBT>
+    <Path>‪C:\Users\PC035\Desktop\</Path>
+    <DBName>ABR-DC.SDF</DBName >
+    <ServerIP>10.1.100.22</ServerIP >
+    <WebAlias>DcPublisher</WebAlias>
+    <PublisherHost>abr-web\abr_web</PublisherHost>
+    <PublisherDb>ABR-DB-Sync</PublisherDb>
+    <PublicationName>ABR-SYNC</PublicationName >
+    <PublicationLogin>Sa</PublicationLogin>
+    <PublicationPass>Nav@2018</PublicationPass>
+    <WebServerPath>‪\\10.1.100.24\dcapp\</WebServerPath>
+  </NBT>
+  <SOD>
+    <Path>‪C:\Users\PC035\Desktop\</Path>
+    <DBName>ABR-DC.SDF</DBName >
+    <ServerIP>10.1.100.22</ServerIP >
+    <WebAlias>DcPublisher</WebAlias>
+    <PublisherHost>abr-web\abr_web</PublisherHost>
+    <PublisherDb>ABR-DB-Sync</PublisherDb>
+    <PublicationName>ABR-SYNC</PublicationName >
+    <PublicationLogin>Sa</PublicationLogin>
+    <PublicationPass>Nav@2018</PublicationPass>
+    <WebServerPath>‪\\10.1.100.24\dcapp\</WebServerPath>
+  </SOD>
+</Databases>
