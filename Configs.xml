@@ -2,7 +2,7 @@
 <Databases>
   <ABR>
     <Path>‪C:\Users\PC035\Desktop\</Path>
-    <DBName>ABR-DC.SDF</DBName >
+    <DBName>ABR-DC</DBName >
     <ServerIP>10.1.100.22</ServerIP >
     <WebAlias>DcPublisher</WebAlias>
     <PublisherHost>abr-web\abr_web</PublisherHost>
@@ -14,26 +14,26 @@
   </ABR>
   <NBT>
     <Path>‪C:\Users\PC035\Desktop\</Path>
-    <DBName>ABR-DC.SDF</DBName >
-    <ServerIP>10.1.100.22</ServerIP >
+    <DBName>NBT-DC</DBName >
+    <ServerIP>10.3.1.22</ServerIP >
     <WebAlias>DcPublisher</WebAlias>
-    <PublisherHost>abr-web\abr_web</PublisherHost>
-    <PublisherDb>ABR-DB-Sync</PublisherDb>
-    <PublicationName>ABR-SYNC</PublicationName >
+    <PublisherHost>NBTWEB\nbtdc</PublisherHost>
+    <PublisherDb>NBT-DB-Sync</PublisherDb>
+    <PublicationName>NBT-SYNC</PublicationName >
     <PublicationLogin>Sa</PublicationLogin>
     <PublicationPass>Nav@2018</PublicationPass>
-    <WebServerPath>‪\\10.1.100.24\dcapp\</WebServerPath>
+    <WebServerPath>‪\\10.3.1.24\dcapp\</WebServerPath>
   </NBT>
   <SOD>
     <Path>‪C:\Users\PC035\Desktop\</Path>
-    <DBName>ABR-DC.SDF</DBName >
-    <ServerIP>10.1.100.22</ServerIP >
+    <DBName>SOD-DC</DBName >
+    <ServerIP>10.2.1.22</ServerIP >
     <WebAlias>DcPublisher</WebAlias>
-    <PublisherHost>abr-web\abr_web</PublisherHost>
-    <PublisherDb>ABR-DB-Sync</PublisherDb>
-    <PublicationName>ABR-SYNC</PublicationName >
+    <PublisherHost>SODWEB\dcsod</PublisherHost>
+    <PublisherDb>SOD-DB-Sync</PublisherDb>
+    <PublicationName>SOD-SYNC</PublicationName >
     <PublicationLogin>Sa</PublicationLogin>
     <PublicationPass>Nav@2018</PublicationPass>
-    <WebServerPath>‪\\10.1.100.24\dcapp\</WebServerPath>
+    <WebServerPath>‪\\10.2.1.24\dcapp\</WebServerPath>
   </SOD>
 </Databases>
