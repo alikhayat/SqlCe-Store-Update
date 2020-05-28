@@ -18,7 +18,7 @@ Class MergeSync
         replobj.PublisherLogin = Configs.PublicationLogin
         replobj.PublisherPassword = Configs.PublicationPass
         replobj.Subscriber = "Auto"
-        replobj.SubscriberConnectionString = String.Format("Data Source=|DataDirectory|\{0}.sdf", Configs.DBName)
+        replobj.SubscriberConnectionString = String.Format("Data Source=|DataDirectory|\Databases\{0}.sdf", Configs.DBName)
 
         Return SyncNow()
     End Function

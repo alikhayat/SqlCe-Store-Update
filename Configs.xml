@@ -1,7 +1,7 @@
 ﻿
 <Databases>
   <ABR>
-    <Path>‪C:\Users\PC035\Desktop\</Path>
+    <Path>‪C:\Users\PC035\Documents\GitHub\SqlCe-Store-Update\Databases</Path>
     <DBName>ABR-DC</DBName >
     <ServerIP>10.1.100.22</ServerIP >
     <WebAlias>DcPublisher</WebAlias>
@@ -10,10 +10,13 @@
     <PublicationName>ABR-SYNC</PublicationName >
     <PublicationLogin>Sa</PublicationLogin>
     <PublicationPass>Nav@2018</PublicationPass>
-    <WebServerPath>‪\\10.1.100.24\dcapp\</WebServerPath>
+    <WebServerPath>‪\\abr-app.retailpioneers.com\dcapp\</WebServerPath>
+    <WebServerUsername>navabr</WebServerUsername>
+    <WebServerPass>Nav@2018</WebServerPass>
+    <WebServerDomain>Retailpioneers.com</WebServerDomain>
   </ABR>
   <NBT>
-    <Path>‪C:\Users\PC035\Desktop\</Path>
+    <Path>‪C:\Users\PC035\Documents\GitHub\SqlCe-Store-Update\Databases</Path>
     <DBName>NBT-DC</DBName >
     <ServerIP>10.3.1.22</ServerIP >
     <WebAlias>DcPublisher</WebAlias>
@@ -22,7 +25,10 @@
     <PublicationName>NBT-SYNC</PublicationName >
     <PublicationLogin>Sa</PublicationLogin>
     <PublicationPass>Nav@2018</PublicationPass>
-    <WebServerPath>‪\\10.3.1.24\dcapp\</WebServerPath>
+    <WebServerPath>‪\\nbt-app.retailpioneers.com\dcapp\</WebServerPath>
+    <WebServerUsername>navnbt</WebServerUsername>
+    <WebServerPass>Nav@2018</WebServerPass>
+    <WebServerDomain>Retailpioneers.com</WebServerDomain>
   </NBT>
   <SOD>
     <Path>‪C:\Users\PC035\Desktop\</Path>
@@ -34,6 +40,9 @@
     <PublicationName>SOD-SYNC</PublicationName >
     <PublicationLogin>Sa</PublicationLogin>
     <PublicationPass>Nav@2018</PublicationPass>
-    <WebServerPath>‪\\10.2.1.24\dcapp\</WebServerPath>
+    <WebServerPath>‪\\sod-app.retailpioneers.com\dcapp\</WebServerPath>
+    <WebServerUsername>navsod</WebServerUsername>
+    <WebServerPass>Nav@2018</WebServerPass>
+    <WebServerDomain>Retailpioneers.com</WebServerDomain>
   </SOD>
 </Databases>
