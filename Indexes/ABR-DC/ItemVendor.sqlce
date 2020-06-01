@@ -1,0 +1,14 @@
+﻿CREATE INDEX [Ven_Index] ON [Bsat Supermarket S_A_L_$Item Vendor] ([Vendor No_] ASC);
+GO
+CREATE INDEX [Item_Index] ON [Bsat Supermarket S_A_L_$Item Vendor] ([Item No_] ASC);
+GO
+CREATE INDEX [Var_Index] ON [Bsat Supermarket S_A_L_$Item Vendor] ([Variant Code] ASC);
+GO
+CREATE INDEX [VendorItem_Index] ON [Bsat Supermarket S_A_L_$Item Vendor] ([Vendor Item No_] ASC);
+GO
+CREATE INDEX [Purch_Index] ON [Bsat Supermarket S_A_L_$Item Vendor] ([Purchase UOM] ASC);
+GO
+CREATE INDEX [RetailItem_Index] ON [Bsat Supermarket S_A_L_$Item Vendor] ([Retail Item] ASC);
+GO
+CREATE INDEX [Desc_Index] ON [Bsat Supermarket S_A_L_$Item Vendor] ([Vendor Description] ASC);
+GO

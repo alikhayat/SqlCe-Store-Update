@@ -6,6 +6,7 @@ Imports System.IO.Compression
 Imports System.Security.Principal
 Imports System.Net
 Imports System.DirectoryServices.AccountManagement
+Imports System.Data.SqlServerCe
 
 Public Structure Databases
     Dim DBName As String
@@ -31,7 +32,7 @@ Module Module1
         If Not IsNothing(Dbs) Then
             For i As Integer = 0 To Dbs.Count - 1
                 Dim MergeSync As New MergeSync(Dbs(i))
-                OnAfterSync(MergeSync.SyncHandle(), Dbs(i))
+                OnAfterSync(MergeSync.SyncHandle(), Dbs(i), MergeSync.Reinialized)
                 'Dim worker As New System.ComponentModel.BackgroundWorker
                 'AddHandler worker.DoWork, AddressOf Sync
                 'AddHandler worker.RunWorkerCompleted, AddressOf HandleThreadCompletion
@@ -41,11 +42,20 @@ Module Module1
             Console.WriteLine("Check your configs")
         End If
     End Sub
-    Private Sub OnAfterSync(ByVal Synced As Boolean, ByVal DBInfo As Databases)
+    Private Sub OnAfterSync(ByVal Synced As Boolean, ByVal DBInfo As Databases, ByVal Reinialized As Boolean)
         If Synced Then
+            If Not Reinialized Then
+                Dim ConnectionString As String = "Data Source=" & AppDomain.CurrentDomain.BaseDirectory & "Databases\" & DBInfo.DBName & ".sdf"
+                Dim IndexesDir As String = AppDomain.CurrentDomain.BaseDirectory & "Indexes\" & DBInfo.DBName
+                Dim IndexesBuild As New Build_Indexes(ConnectionString, IndexesDir)
+                If Not IndexesBuild.RebuildIndexes Then
+                    Console.WriteLine(String.Format("Operation failed for {0}", DBInfo.DBName))
+                    Exit Sub
+                End If
+            End If
             Console.WriteLine("Sync succeed")
             Console.WriteLine("Compacting database...")
-            If compact(ControlChars.Quote & "Data Source=Databases\" & DBInfo.DBName & ".sdf" & ControlChars.Quote) Then
+            If Compact(ControlChars.Quote & "Data Source=Databases\" & DBInfo.DBName & ".sdf" & ControlChars.Quote) Then
                 Console.WriteLine("Zipping file")
                 If ZipFiles(DBInfo.DBName) Then
                     Console.WriteLine("Moving file")
@@ -59,8 +69,8 @@ Module Module1
             Else
                 Console.WriteLine("Compact Failed")
                 Console.WriteLine("Ignore Database Compact? Y for Yes,N for No")
-                Dim response As String = Console.ReadLine
-                If response = "Y" Or response = "y" Then
+                Dim Response As String = Console.ReadLine
+                If Response = "Y" Or Response = "y" Then
                     ZipFiles(DBInfo.DBName)
                     Console.WriteLine("Done")
                 Else
@@ -71,7 +81,7 @@ Module Module1
             Console.WriteLine("Sync Failed")
         End If
     End Sub
-    Private Function compact(ByVal ConnectionString As String) As Boolean
+    Private Function Compact(ByVal ConnectionString As String) As Boolean
         Dim cmdProcess As New Process
         With cmdProcess
             .StartInfo = New ProcessStartInfo("sqlcecmd", "-d " & ConnectionString & " -e compact")
@@ -84,8 +94,8 @@ Module Module1
             .WaitForExit()
         End With
 
-        Dim ipconfigOutput As String = cmdProcess.StandardOutput.ReadToEnd
-        If ipconfigOutput = "Database successfully compacted" & vbCrLf Then
+        Dim Output As String = cmdProcess.StandardOutput.ReadToEnd
+        If Output = "Database successfully compacted" & vbCrLf Then
             Return True
         Else
             Return False
@@ -176,7 +186,7 @@ Module Module1
                 End Try
             End Using
             If validLogin Then
-                File.Copy(FilePath, Destination.Trim, True)
+                File.Copy(FilePath, Destination.Substring(1), True)
                 Return True
             Else
                 Console.WriteLine("Username or Password is incorrect...", "Login Error")
@@ -187,4 +197,56 @@ Module Module1
             Return False
         End Try
     End Function
+    Partial Private Class Build_Indexes
+        Private ConnectionString As String
+        Private IndexesDir As String
+        Public Sub New(ByVal _ConnectionString As String, ByVal _IndexesDir As String)
+            ConnectionString = _ConnectionString
+            IndexesDir = _IndexesDir
+        End Sub
+        Public Function RebuildIndexes()
+            Dim Dir = New DirectoryInfo(IndexesDir)
+            If Dir.Exists Then
+                Dim TbIndexes As String() = Directory.GetFiles(IndexesDir, "*.sqlce", SearchOption.AllDirectories)
+                If TbIndexes.Length > 0 Then
+                    For i As Integer = 0 To TbIndexes.Length - 1
+                        Dim IndexFile As String = TbIndexes(i)
+                        Console.WriteLine(IndexFile)
+                        Dim Query As String = File.ReadAllText(IndexFile, System.Text.Encoding.ASCII)
+                        If Query <> String.Empty Then
+                            If Not ApplyIndexes(Query) Then
+                                Console.WriteLine("Check Index queries")
+                                Return False
+                                Exit For
+                            End If
+                        End If
+                    Next
+                    Return True
+                Else
+                    Console.WriteLine("Indexes files not found")
+                    Return False
+                End If
+            Else
+                Console.WriteLine("Directory not found")
+                Return False
+            End If
+        End Function
+        Private Function ApplyIndexes(ByVal Query As String)
+            Dim Conn As SqlCeConnection = New SqlCeConnection(ConnectionString)
+            Dim Cmd As New SqlCeCommand
+            Try
+                If Conn.State <> System.Data.ConnectionState.Open Then
+                    Conn.Open()
+                End If
+
+                Cmd = New SqlCeCommand(Query, Conn)
+                Cmd.ExecuteNonQuery()
+                Return True
+            Catch ex As Exception
+                Return False
+            Finally
+                Cmd.Dispose()
+            End Try
+        End Function
+    End Class
 End Module

@@ -1,0 +1,8 @@
+﻿CREATE Unique INDEX [UNO_Index] ON [Bsat Supermarket S_A_L_$Vendor] ([No_] ASC);
+GO
+CREATE  INDEX [NO_Index] ON [Bsat Supermarket S_A_L_$Vendor] ([No_] ASC);
+GO
+CREATE INDEX [Name_Index] ON [Bsat Supermarket S_A_L_$Vendor] ([Name] ASC);
+GO
+CREATE INDEX [RetailV_Index] ON [Bsat Supermarket S_A_L_$Vendor] ([Retail Vendor] ASC);
+GO
