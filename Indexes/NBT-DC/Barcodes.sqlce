@@ -1,0 +1,24 @@
+﻿CREATE UNIQUE INDEX [UBarcodeNo_Index] ON [Retail pioneers S_A_L_$Barcodes] ([Barcode No_] ASC);
+GO
+CREATE INDEX [BarcodeNo_Index] ON [Retail pioneers S_A_L_$Barcodes] ([Barcode No_] ASC);
+GO
+CREATE INDEX [ItemNo_Index] ON [Retail pioneers S_A_L_$Barcodes] ([Item No_] ASC);
+GO
+CREATE INDEX [Desc_Index] ON [Retail pioneers S_A_L_$Barcodes] ([Description] ASC);
+GO
+CREATE INDEX [Valid_Index] ON [Retail pioneers S_A_L_$Barcodes] ([Valid Barcode] ASC);
+GO
+CREATE INDEX [Var_Index] ON [Retail pioneers S_A_L_$Barcodes] ([Variant Code] ASC);
+GO
+CREATE INDEX [UOMCode_Index] ON [Retail pioneers S_A_L_$Barcodes] ([Unit of Measure Code] ASC);
+GO
+CREATE INDEX [AR_Index] ON [Retail pioneers S_A_L_$Barcodes] ([Arabic Description] ASC);
+GO
+CREATE INDEX [PLU_Index] ON [Retail pioneers S_A_L_$Barcodes] ([PLU] ASC);
+GO
+CREATE INDEX [Dolphin_Index] ON [Retail pioneers S_A_L_$Barcodes] ([Dolphin Item No_] ASC);
+GO
+CREATE INDEX [Deleted_Index] ON [Retail pioneers S_A_L_$Barcodes] ([Deleted] ASC);
+GO
+CREATE INDEX [Default_Index] ON [Retail pioneers S_A_L_$Barcodes] ([Default Barcode] ASC);
+GO

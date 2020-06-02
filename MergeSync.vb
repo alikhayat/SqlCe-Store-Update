@@ -45,6 +45,7 @@ Class MergeSync
         Try
             Console.WriteLine("Rinializing Database " + Configs.DBName)
             replobj.ReinitializeSubscription(False)
+            replobj.Synchronize()
             Reinialized = True
             Return True
         Catch ex As Exception

@@ -31,7 +31,7 @@
     <WebServerDomain>Retailpioneers.com</WebServerDomain>
   </NBT>
   <SOD>
-    <Path>‪C:\Users\PC035\Desktop\</Path>
+    <Path>C:\Users\PC035\Documents\GitHub\SqlCe-Store-Update\Databases</Path>
     <DBName>SOD-DC</DBName >
     <ServerIP>10.2.1.22</ServerIP >
     <WebAlias>DcPublisher</WebAlias>

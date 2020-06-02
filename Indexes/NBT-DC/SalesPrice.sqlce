@@ -1,0 +1,20 @@
+﻿CREATE INDEX [ItemNo_Index] ON [Retail Pioneers S_A_L_$Sales Price] ([Item No_] ASC);
+GO
+CREATE INDEX [CurrCode_Index] ON [Retail Pioneers S_A_L_$Sales Price] ([Currency Code] ASC);
+GO
+CREATE INDEX [StartingDate_Index] ON [Retail Pioneers S_A_L_$Sales Price] ([Starting Date] ASC);
+GO
+CREATE INDEX [Vcode_Index] ON [Retail Pioneers S_A_L_$Sales Price] ([Variant Code] ASC);
+GO
+CREATE INDEX [SalesType_Index] ON [Retail Pioneers S_A_L_$Sales Price] ([Sales Type] ASC);
+GO
+CREATE INDEX [SalesCode_Index] ON [Retail Pioneers S_A_L_$Sales Price] ([Sales Code] ASC);
+GO
+CREATE INDEX [VariantCode_Index] ON [Retail Pioneers S_A_L_$Sales Price] ([Variant Code] ASC);
+GO
+CREATE INDEX [UOMCode_Index] ON [Retail Pioneers S_A_L_$Sales Price] ([Unit of Measure Code] ASC);
+GO
+CREATE INDEX [MinQty_Index] ON [Retail Pioneers S_A_L_$Sales Price] ([Minimum Quantity] ASC);
+GO
+CREATE INDEX [UnitPrice_Index] ON [Retail Pioneers S_A_L_$Sales Price] ([Unit Price Including VAT] ASC);
+GO

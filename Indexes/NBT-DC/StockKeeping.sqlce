@@ -1,0 +1,8 @@
+﻿CREATE INDEX [ItemNo_Index] ON [Retail Pioneers S_A_L_$Stockkeeping Unit] ([Item No_] ASC);
+GO
+CREATE INDEX [Vendor_Index] ON [Retail Pioneers S_A_L_$Stockkeeping Unit] ([Vendor No_] ASC);
+GO
+CREATE INDEX [Var_Index] ON [Retail Pioneers S_A_L_$Stockkeeping Unit] ([Variant Code] ASC);
+GO
+CREATE INDEX [Location_Index] ON [Retail Pioneers S_A_L_$Stockkeeping Unit] ([Location Code] ASC);
+GO

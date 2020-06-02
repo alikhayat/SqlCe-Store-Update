@@ -1,0 +1,11 @@
+﻿CREATE INDEX [Item_Index] ON [Retail Pioneers S_A_L_$Variant Unit of Measure] ([Item No_] ASC);
+GO
+CREATE INDEX [Var_Index] ON [Retail Pioneers S_A_L_$Variant Unit of Measure] ([Variant Code] ASC);
+GO
+CREATE INDEX [UOM_Index] ON [Retail Pioneers S_A_L_$Variant Unit of Measure] ([UOM Code] ASC);
+GO
+CREATE INDEX [BUOM_Index] ON [Retail Pioneers S_A_L_$Variant Unit of Measure] ([Base UOM] ASC);
+GO
+CREATE INDEX [DPurch_Index] ON [Retail Pioneers S_A_L_$Variant Unit of Measure] ([Default Purchase UOM] ASC);
+GO
+

@@ -44,10 +44,11 @@ Module Module1
     End Sub
     Private Sub OnAfterSync(ByVal Synced As Boolean, ByVal DBInfo As Databases, ByVal Reinialized As Boolean)
         If Synced Then
-            If Not Reinialized Then
+            If Reinialized Then
                 Dim ConnectionString As String = "Data Source=" & AppDomain.CurrentDomain.BaseDirectory & "Databases\" & DBInfo.DBName & ".sdf"
                 Dim IndexesDir As String = AppDomain.CurrentDomain.BaseDirectory & "Indexes\" & DBInfo.DBName
                 Dim IndexesBuild As New Build_Indexes(ConnectionString, IndexesDir)
+                Console.WriteLine("Creating Indexes")
                 If Not IndexesBuild.RebuildIndexes Then
                     Console.WriteLine(String.Format("Operation failed for {0}", DBInfo.DBName))
                     Exit Sub
@@ -59,7 +60,7 @@ Module Module1
                 Console.WriteLine("Zipping file")
                 If ZipFiles(DBInfo.DBName) Then
                     Console.WriteLine("Moving file")
-                    If CopyFile(DBInfo.PathUsername, DBInfo.PathPass, DBInfo.WebDomain, AppDomain.CurrentDomain.BaseDirectory & DBInfo.DBName & ".zip", DBInfo.WebServerPath & DBInfo.DBName & ".zip") Then
+                    If CopyFile(DBInfo.PathUsername + "@" + DBInfo.WebDomain, DBInfo.PathPass, DBInfo.WebDomain, AppDomain.CurrentDomain.BaseDirectory & DBInfo.DBName & ".zip", DBInfo.WebServerPath & DBInfo.DBName & ".zip") Then
                         File.Delete(AppDomain.CurrentDomain.BaseDirectory & DBInfo.DBName & ".zip")
                         Console.WriteLine("Done")
                     Else
@@ -200,9 +201,17 @@ Module Module1
     Partial Private Class Build_Indexes
         Private ConnectionString As String
         Private IndexesDir As String
+        Dim Conn As SqlCeConnection = New SqlCeConnection(ConnectionString)
         Public Sub New(ByVal _ConnectionString As String, ByVal _IndexesDir As String)
             ConnectionString = _ConnectionString
             IndexesDir = _IndexesDir
+            Try
+                If Conn.State <> System.Data.ConnectionState.Open Then
+                    Conn.Open()
+                End If
+            Catch ex As Exception
+                Console.WriteLine(ex.Message)
+            End Try
         End Sub
         Public Function RebuildIndexes()
             Dim Dir = New DirectoryInfo(IndexesDir)
@@ -211,15 +220,17 @@ Module Module1
                 If TbIndexes.Length > 0 Then
                     For i As Integer = 0 To TbIndexes.Length - 1
                         Dim IndexFile As String = TbIndexes(i)
-                        Console.WriteLine(IndexFile)
-                        Dim Query As String = File.ReadAllText(IndexFile, System.Text.Encoding.ASCII)
-                        If Query <> String.Empty Then
-                            If Not ApplyIndexes(Query) Then
-                                Console.WriteLine("Check Index queries")
-                                Return False
-                                Exit For
+                        Dim QueryCount As Integer = File.ReadAllLines(IndexFile).Length
+                        For j As Integer = 0 To QueryCount - 1 Step 2
+                            Dim Query As String = File.ReadAllLines(IndexFile)(j)
+                            If Query <> String.Empty Then
+                                If Not ApplyIndexes(Query) Then
+                                    Console.WriteLine("Check Index queries")
+                                    Return False
+                                    Exit For
+                                End If
                             End If
-                        End If
+                        Next
                     Next
                     Return True
                 Else
@@ -232,13 +243,8 @@ Module Module1
             End If
         End Function
         Private Function ApplyIndexes(ByVal Query As String)
-            Dim Conn As SqlCeConnection = New SqlCeConnection(ConnectionString)
             Dim Cmd As New SqlCeCommand
             Try
-                If Conn.State <> System.Data.ConnectionState.Open Then
-                    Conn.Open()
-                End If
-
                 Cmd = New SqlCeCommand(Query, Conn)
                 Cmd.ExecuteNonQuery()
                 Return True
@@ -246,6 +252,7 @@ Module Module1
                 Return False
             Finally
                 Cmd.Dispose()
+                Conn.Close()
             End Try
         End Function
     End Class

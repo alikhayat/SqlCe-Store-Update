@@ -1,0 +1,6 @@
+CREATE UNIQUE INDEX [UCode_Index] ON [Retail Pioneers S_A_L_$Comparison Unit of Measure] ([Code] ASC);
+GO
+CREATE INDEX [Code_Index] ON [Retail Pioneers S_A_L_$Comparison Unit of Measure] ([Code] ASC);
+GO
+CREATE INDEX [Desc_Index] ON [Retail Pioneers S_A_L_$Comparison Unit of Measure] ([Description] ASC);
+GO

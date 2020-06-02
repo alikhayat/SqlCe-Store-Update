@@ -1,0 +1,4 @@
+﻿CREATE UNIQUE INDEX [UID_index] ON [Retail Pioneers S_A_L_$Handheld User Setup] ([ID] ASC);
+GO
+CREATE INDEX [NID_Index] ON [Retail Pioneers S_A_L_$Handheld User Setup] ([ID] ASC);
+GO

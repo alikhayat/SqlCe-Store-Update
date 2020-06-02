@@ -1,0 +1,37 @@
+﻿CREATE UNIQUE INDEX [UNO_Index] ON [Retail Pioneers S_A_L_$Item] ([No_] ASC);
+GO
+CREATE INDEX [NNO_Index] ON [Retail Pioneers S_A_L_$Item] ([No_] ASC);
+GO
+CREATE INDEX [Desc_Index] ON [Retail Pioneers S_A_L_$Item] ([Description] ASC);
+GO
+CREATE INDEX [Desc2_Index] ON [Retail Pioneers S_A_L_$Item] ([Description 2] ASC);
+GO
+CREATE INDEX [UOM_Index] ON [Retail Pioneers S_A_L_$Item] ([Base Unit of Measure] ASC);
+GO
+CREATE INDEX [Price_Index] ON [Retail Pioneers S_A_L_$Item] ([Price Includes VAT] ASC);
+GO
+CREATE INDEX [AR_Index] ON [Retail Pioneers S_A_L_$Item] ([Arabic Description] ASC);
+GO
+CREATE INDEX [Best_Index] ON [Retail Pioneers S_A_L_$Item] ([Best Before Days] ASC);
+GO
+CREATE INDEX [Var_Index] ON [Retail Pioneers S_A_L_$Item] ([Variant Framework Code] ASC);
+GO
+CREATE INDEX [VendorIndex] ON [Retail Pioneers S_A_L_$Item] ([Vendor No_] ASC);
+GO
+CREATE INDEX [VATBusIndex] ON [Retail Pioneers S_A_L_$Item] ([VAT Bus_ Posting Gr_ (Price)] ASC);
+GO
+CREATE INDEX [VATGenIndex] ON [Retail Pioneers S_A_L_$Item] ([Gen_ Prod_ Posting Group] ASC);
+GO
+CREATE INDEX [ProductGroupIndex] ON [Retail Pioneers S_A_L_$Item] ([Product Group Code] ASC);
+GO
+CREATE INDEX [PurchUOM_Index] ON [Retail Pioneers S_A_L_$Item] ([Purch_ Unit of Measure] ASC);
+GO
+CREATE INDEX [Scaleuse_index] ON [Retail Pioneers S_A_L_$Item] ([Scale Use] ASC);
+GO
+CREATE INDEX [Nonretail_Index] ON [Retail Pioneers S_A_L_$Item] ([None Retail Item] ASC);
+GO
+CREATE INDEX [DefaultCurr_Index] ON [Retail Pioneers S_A_L_$Item] ([Default Currency Code] ASC);
+GO
+CREATE INDEX [VenDesc_Index] ON [Retail Pioneers S_A_L_$Item] ([Vendor Description] ASC);
+GO
+

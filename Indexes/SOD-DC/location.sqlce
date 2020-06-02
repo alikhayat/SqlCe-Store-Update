@@ -1,0 +1,4 @@
+CREATE UNIQUE INDEX [UCode_Index] ON [Retail Pioneers S_A_L_$Location] ([Code] ASC);
+GO
+CREATE INDEX [Code_Index] ON [Retail Pioneers S_A_L_$Location] ([Code] ASC);
+GO
