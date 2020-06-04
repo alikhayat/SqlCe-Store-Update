@@ -1,4 +1,5 @@
 ﻿Imports System.Data.SqlServerCe
+Imports System.Threading
 Class MergeSync
     Private replobj As SqlCeReplication
     Private Configs As Databases
@@ -31,8 +32,10 @@ Class MergeSync
         Catch ex As Exception
             Console.WriteLine(ex.GetType.FullName)
             Console.WriteLine("Try and Reinialize databases ? Y for yes,N for No")
-            Dim Response As String = Console.ReadLine
+            Dim Response As String = Reader.ReadLine(5000)
             If Response = "y" Or Response = "Y" Then
+                Return Reinialize()
+            ElseIf Response = Nothing Then
                 Return Reinialize()
             Else
                 Return False
@@ -55,4 +58,37 @@ Class MergeSync
             replobj.Dispose()
         End Try
     End Function
+    Class Reader
+        Private Shared inputThread As Thread
+        Private Shared getInput, gotInput As AutoResetEvent
+        Private Shared input As String
+
+        Shared Sub New()
+            getInput = New AutoResetEvent(False)
+            gotInput = New AutoResetEvent(False)
+            inputThread = New Thread(AddressOf reader)
+            inputThread.IsBackground = True
+            inputThread.Start()
+        End Sub
+
+        Private Shared Sub reader()
+            While True
+                getInput.WaitOne()
+                input = Console.ReadLine()
+                gotInput.[Set]()
+            End While
+        End Sub
+
+        Public Shared Function ReadLine(Optional ByVal timeOutMillisecs As Integer = Timeout.Infinite) As String
+            getInput.[Set]()
+            Dim success As Boolean = gotInput.WaitOne(timeOutMillisecs)
+
+            If success Then
+                Return input
+            Else
+                Return Nothing
+            End If
+        End Function
+    End Class
+
 End Class
