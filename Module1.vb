@@ -70,8 +70,9 @@ Module Module1
             Else
                 Console.WriteLine("Compact Failed")
                 Console.WriteLine("Ignore Database Compact? Y for Yes,N for No")
-                Dim Response As String = Console.ReadLine
-                If Response = "Y" Or Response = "y" Then
+                Dim Reader As New Reader
+                Dim Response As String = Reader.ReadLine(5000)
+                If Response = "Y" Or Response = "y" Or Response = Nothing Then
                     ZipFiles(DBInfo.DBName)
                     Console.WriteLine("Done")
                 Else
